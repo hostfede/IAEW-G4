@@ -2,13 +2,12 @@ package iaew.tpi.apiClientes.restController;
 
 
 import iaew.tpi.apiClientes.transferObjects.ClienteDto;
+import iaew.tpi.apiClientes.transferObjects.ResponseWrapperDto;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/clientes")
@@ -20,9 +19,12 @@ public class ClientesController {
                 "A", "A", LocalDate.now(),"1234"));
     }
 
-    @GetMapping()
-    public String holaMundo(){
-        return "Hola Mundo!";
+    @GetMapping
+    public ResponseEntity<ResponseWrapperDto> getAll(
+            @RequestParam(name = "page", required = false, defaultValue = "1") int page,
+            @RequestParam(name = "size", required = false, defaultValue = "10") int size){
+        return ResponseEntity.ok(null);
+
     }
 
 }
