@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 //https://www.baeldung.com/spring-5-webclient
+
+/**
+ * NO DEBERÍA HACER FALTA, CON EL GENERICO DEBERÍA SER SUFICIENTE
+ * */
 @Service
 public interface IClienteReservas<T> {
 
