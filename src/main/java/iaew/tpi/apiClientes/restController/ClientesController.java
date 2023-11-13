@@ -1,6 +1,10 @@
 package iaew.tpi.apiClientes.restController;
 
 
+import iaew.tpi.apiClientes.controllers.DeleteController;
+import iaew.tpi.apiClientes.controllers.GetController;
+import iaew.tpi.apiClientes.controllers.PostController;
+import iaew.tpi.apiClientes.controllers.PutController;
 import iaew.tpi.apiClientes.reservas.clients.IClienteReservasGen;
 import iaew.tpi.apiClientes.reservas.transferObjects.ReservaAlojamientoDto;
 import iaew.tpi.apiClientes.transferObjects.ClienteDto;
@@ -19,21 +23,42 @@ public class ClientesController {
 
     @Autowired
     private IClienteReservasGen clienteReservasGen;
+    @Autowired
+    private GetController getController;
+    @Autowired
+    private PostController postController;
+    @Autowired
+    private PutController putController;
+    @Autowired
+    private DeleteController deleteController;
     @Value("${baseUrl.reservasAlojamiento}")
     private String alojamientosBaseUrl;
 
     @GetMapping("/{id_cliente}")
     public ResponseEntity<ClienteDto> getCliente(@PathVariable Integer id_cliente){
-        return ResponseEntity.ok(new ClienteDto(id_cliente, "A", "A",
-                "A", "A", LocalDate.now(),"1234"));
+        return ResponseEntity.ok(getController.getCliente(id_cliente));
     }
 
     @GetMapping
-    public ResponseEntity<ResponseWrapperDto> getAll(
+    public ResponseEntity<List<ClienteDto>> getAll(
             @RequestParam(name = "page", required = false, defaultValue = "1") int page,
             @RequestParam(name = "size", required = false, defaultValue = "10") int size){
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(getController.getClientes(page, size));
+    }
 
+    @PostMapping
+    public ResponseEntity<ClienteDto> createCliente(@RequestBody ClienteDto clienteDto){
+        return ResponseEntity.ok(postController.createCliente(clienteDto));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<ClienteDto> deleteCliente(@PathVariable Integer id_cliente){
+        return ResponseEntity.ok(deleteController.deleteCliente(id_cliente));
+    }
+
+    @PutMapping
+    public ResponseEntity<ClienteDto> updateCliente(@RequestBody ClienteDto clienteDto){
+        return ResponseEntity.ok(putController.updateCliente(clienteDto));
     }
 
     /**
