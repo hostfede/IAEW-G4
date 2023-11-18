@@ -5,14 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PlanPuntos")
-public class PlanPuntosEntitie {
+@Table(name = "plan_puntos")
+public class PlanPuntosEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)

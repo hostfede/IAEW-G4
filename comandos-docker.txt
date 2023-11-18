@@ -1,0 +1,7 @@
+# Creacion de contenedor de base de datos (sin docker compose)
+# El archivo sql tiene que empezar con 00 para que se ejecute antes que los scripts internos del contenedor
+docker run --name bbdd-iaew -e MYSQL_ROOT_PASSWORD=123456 -d -v $(pwd)/BDD:/docker-entrypoint-initdb.d -p 3306:3306 mysql
+
+
+Iniciar contenedor de base de datos
+docker start bbdd-iaew

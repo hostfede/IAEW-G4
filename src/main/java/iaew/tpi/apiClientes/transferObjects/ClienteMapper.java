@@ -1,25 +1,25 @@
 package iaew.tpi.apiClientes.transferObjects;
 
-import iaew.tpi.apiClientes.persistence.entities.ClienteEntitie;
+import iaew.tpi.apiClientes.persistence.entities.ClienteEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteMapper {
 
-    public ClienteDto mapToDto(ClienteEntitie clienteEntitie){
+    public ClienteDto mapToDto(ClienteEntity clienteEntity){
         return new ClienteDto(
-                clienteEntitie.getId(),
-                clienteEntitie.getNombre(),
-                clienteEntitie.getApellido(),
-                clienteEntitie.getEmail(),
-                clienteEntitie.getTelefono(),
-                clienteEntitie.getFechaNacimiento(),
-                clienteEntitie.getDocumento()
+                clienteEntity.getId(),
+                clienteEntity.getNombre(),
+                clienteEntity.getApellido(),
+                clienteEntity.getEmail(),
+                clienteEntity.getTelefono(),
+                clienteEntity.getFechaNacimiento(),
+                clienteEntity.getDocumento()
         );
     }
 
-    public ClienteEntitie mapToEntitie(ClienteDto clienteDto){
-        return new ClienteEntitie(
+    public ClienteEntity mapToEntity(ClienteDto clienteDto){
+        return new ClienteEntity(
                 clienteDto.id(),
                 clienteDto.nombre(),
                 clienteDto.apellido(),

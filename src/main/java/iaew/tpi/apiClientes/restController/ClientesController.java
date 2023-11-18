@@ -1,10 +1,10 @@
 package iaew.tpi.apiClientes.restController;
 
 
-import iaew.tpi.apiClientes.controllers.DeleteController;
-import iaew.tpi.apiClientes.controllers.GetController;
-import iaew.tpi.apiClientes.controllers.PostController;
-import iaew.tpi.apiClientes.controllers.PutController;
+import iaew.tpi.apiClientes.controllers.DeleteService;
+import iaew.tpi.apiClientes.controllers.GetService;
+import iaew.tpi.apiClientes.controllers.PostService;
+import iaew.tpi.apiClientes.controllers.PutService;
 import iaew.tpi.apiClientes.reservas.clients.IClienteReservasGen;
 import iaew.tpi.apiClientes.reservas.transferObjects.ReservaAlojamientoDto;
 import iaew.tpi.apiClientes.transferObjects.ClienteDto;
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -24,41 +23,41 @@ public class ClientesController {
     @Autowired
     private IClienteReservasGen clienteReservasGen;
     @Autowired
-    private GetController getController;
+    private GetService getService;
     @Autowired
-    private PostController postController;
+    private PostService postService;
     @Autowired
-    private PutController putController;
+    private PutService putService;
     @Autowired
-    private DeleteController deleteController;
+    private DeleteService deleteService;
     @Value("${baseUrl.reservasAlojamiento}")
     private String alojamientosBaseUrl;
 
     @GetMapping("/{id_cliente}")
     public ResponseEntity<ClienteDto> getCliente(@PathVariable Integer id_cliente){
-        return ResponseEntity.ok(getController.getCliente(id_cliente));
+        return ResponseEntity.ok(getService.getCliente(id_cliente));
     }
 
     @GetMapping
-    public ResponseEntity<List<ClienteDto>> getAll(
+    public ResponseEntity<ResponseWrapperDto> getAll(
             @RequestParam(name = "page", required = false, defaultValue = "1") int page,
             @RequestParam(name = "size", required = false, defaultValue = "10") int size){
-        return ResponseEntity.ok(getController.getClientes(page, size));
+        return ResponseEntity.ok(getService.getClientes(page, size));
     }
 
     @PostMapping
     public ResponseEntity<ClienteDto> createCliente(@RequestBody ClienteDto clienteDto){
-        return ResponseEntity.ok(postController.createCliente(clienteDto));
+        return ResponseEntity.ok(postService.createCliente(clienteDto));
     }
 
-    @DeleteMapping
-    public ResponseEntity<ClienteDto> deleteCliente(@PathVariable Integer id_cliente){
-        return ResponseEntity.ok(deleteController.deleteCliente(id_cliente));
+    @DeleteMapping("/{id_cliente}")
+    public ResponseEntity<ClienteDto> deleteCliente(@PathVariable("id_cliente") Integer id_cliente){
+        return ResponseEntity.ok(deleteService.deleteCliente(id_cliente));
     }
 
-    @PutMapping
-    public ResponseEntity<ClienteDto> updateCliente(@RequestBody ClienteDto clienteDto){
-        return ResponseEntity.ok(putController.updateCliente(clienteDto));
+    @PutMapping("/{id_cliente}")
+    public ResponseEntity<ClienteDto> updateCliente(@PathVariable("id_cliente") Integer idCliente,@RequestBody ClienteDto clienteDto){
+        return ResponseEntity.ok(putService.updateCliente(idCliente, clienteDto));
     }
 
     /**

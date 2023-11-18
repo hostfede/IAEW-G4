@@ -11,8 +11,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Cliente")
-public class ClienteEntitie {
+@Table(name = "cliente")
+public class ClienteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -27,7 +27,7 @@ public class ClienteEntitie {
     @Column(name = "email", nullable = false, length = 60)
     private String email;
     @Basic
-    @Column(name = "fecha_nacimiento", nullable = false, length = 60)
+    @Column(name = "fecha_nacimiento", nullable = false)
     private LocalDate fechaNacimiento;
     @Basic
     @Column(name = "telefono", nullable = false, length = 60)
