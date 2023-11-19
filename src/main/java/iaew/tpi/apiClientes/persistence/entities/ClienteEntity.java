@@ -24,7 +24,7 @@ public class ClienteEntity {
     @Column(name = "apellido", nullable = false, length = 60)
     private String apellido;
     @Basic
-    @Column(name = "email", nullable = false, length = 60)
+    @Column(name = "email", nullable = false, length = 60, unique = true)
     private String email;
     @Basic
     @Column(name = "fecha_nacimiento", nullable = false)
@@ -33,6 +33,9 @@ public class ClienteEntity {
     @Column(name = "telefono", nullable = false, length = 60)
     private String telefono;
     @Basic
-    @Column(name = "documento", nullable = false, length = 60)
+    @Column(name = "documento", nullable = false, length = 60, unique = true)
     private String documento;
+
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private PlanPuntosEntity planPuntos;
 }
