@@ -38,4 +38,33 @@ public class ReservaWrapper {
         reserva.tipo_reserva = "TRANSPORTE";
         return reserva;
     }
+
+    public static ReservaWrapper crearReservaExperiencia(int id, ExperienciaDto experiencia, LocalDate fecha_inicio, int participantes,
+                                                        double precio_total, String estado){
+
+        ReservaWrapper reserva = new ReservaWrapper();
+        reserva.experiencia = experiencia;
+        reserva.id = id;
+        reserva.fecha_inicio = fecha_inicio;
+        reserva.participantes = participantes;
+        reserva.precio_total = precio_total;
+        reserva.estado = estado;
+        reserva.tipo_reserva = "EXPERIENCIA";
+        return reserva;
+    }
+
+    public static ReservaWrapper crearReservaAlojamiento(int id, AlojamientoDto alojamiento, LocalDate fecha_inicio,
+                                                        LocalDate fecha_fin, double precio_total, String estado, int huespedes){
+
+        ReservaWrapper reserva = new ReservaWrapper();
+        reserva.alojamiento = alojamiento;
+        reserva.id = id;
+        reserva.fecha_inicio = fecha_inicio;
+        reserva.fecha_fin = fecha_fin;
+        reserva.precio_total = precio_total;
+        reserva.huespedes = huespedes;
+        reserva.estado = estado;
+        reserva.tipo_reserva = "ALOJAMIENTO";
+        return reserva;
+    }
 }

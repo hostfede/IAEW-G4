@@ -1,13 +1,11 @@
 package iaew.tpi.apiClientes.restController;
 
 
-import iaew.tpi.apiClientes.controllers.DeleteService;
-import iaew.tpi.apiClientes.controllers.GetService;
-import iaew.tpi.apiClientes.controllers.PostService;
-import iaew.tpi.apiClientes.controllers.PutService;
+import iaew.tpi.apiClientes.controllers.*;
 import iaew.tpi.apiClientes.reservas.clients.IClienteReservasGen;
 import iaew.tpi.apiClientes.reservas.transferObjects.ReservaAlojamientoDto;
 import iaew.tpi.apiClientes.transferObjects.ClienteDto;
+import iaew.tpi.apiClientes.transferObjects.ReservaWrapper;
 import iaew.tpi.apiClientes.transferObjects.ResponseWrapperDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +28,8 @@ public class ClientesController {
     private PutService putService;
     @Autowired
     private DeleteService deleteService;
+    @Autowired
+    private ReservasService reservasService;
     @Value("${baseUrl.reservasAlojamiento}")
     private String alojamientosBaseUrl;
 
@@ -63,13 +63,10 @@ public class ClientesController {
     /**
      * Endpoint de prueba para el cliente genérico. No deberían hacer falta los otros clientes.
      * */
-    @GetMapping("/{id_cliente}/reservas-alojamiento")
-    public ResponseEntity<List<ReservaAlojamientoDto>> getReservas(@PathVariable Integer id_cliente){
-
-        List<ReservaAlojamientoDto> reservas = clienteReservasGen.getReservas(alojamientosBaseUrl, "reservas-alojamientos", id_cliente,ReservaAlojamientoDto.class);
-
+    @GetMapping("/{id_cliente}/reservas")
+    public ResponseEntity<List<ReservaWrapper>> getReservas(@PathVariable Integer id_cliente){
+        List<ReservaWrapper> reservas = reservasService.getReservasCliente(id_cliente);
         return ResponseEntity.ok(reservas);
-
     }
 
 }
