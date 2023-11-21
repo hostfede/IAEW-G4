@@ -51,6 +51,8 @@ public class ReservasService {
         } else
             throw new APIException("No existe un cliente con el id provisto", null, HttpStatus.NOT_FOUND);
 
+        return null;
+
     }
 
 }
