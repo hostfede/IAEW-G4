@@ -28,4 +28,8 @@ CREATE TABLE plan_puntos (
                             FOREIGN KEY (cliente_id) REFERENCES cliente(id) on delete CASCADE
 );
 
+CREATE TABLE docker_ready (
+    loaded TINYINT(1)
+);
+INSERT INTO docker_ready (loaded) VALUES (TRUE);
 
