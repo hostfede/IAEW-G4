@@ -43,7 +43,9 @@ public class ReservasService {
             List<ReservaTransporteDto> reservasTransporte;
             List<ReservaWrapper> reservasWrapper = new ArrayList<>();
 
-            // Se podría hacer más genérico o incluso aplicar un patrón strategy pero no sé si vale la pena
+            // Ubiera estado bueno implementar un patrón BUILDER para crear las instancias de ReservasWrapper y así
+            //poder hacer un método genérico que reciba el path, tipo de reserva y un string o algo de eso que identifique
+            //la estrategia del builder
             try {
                 reservasAlojamiento = clienteReservas
                         .getReservas(alojamientosBaseUrl, "/reservas-alojamiento", idCliente, ReservaAlojamientoDto.class);
@@ -80,6 +82,9 @@ public class ReservasService {
                 }
             }catch (ReservasException re){
                 reservasTransporte = null;
+            }
+            if (reservasWrapper.isEmpty()){
+                throw new APIException("El cliente no posee ninguna reserva realizada a su nombre", null, HttpStatus.NOT_FOUND);
             }
             return reservasWrapper;
         } else

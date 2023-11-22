@@ -5,3 +5,8 @@ docker run --name bbdd-iaew -e MYSQL_ROOT_PASSWORD=123456 -d -v $(pwd)/BDD:/dock
 
 Iniciar contenedor de base de datos
 docker start bbdd-iaew
+
+# Contenedor de la aplicacion
+ docker build . -t tpi_iaew
+
+ docker run -p 8080:8080 -d tpi_iaew --name iaew_cont
