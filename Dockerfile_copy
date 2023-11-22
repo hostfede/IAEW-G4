@@ -1,23 +1,23 @@
 # Etapa de compilación
-FROM amazoncorretto:17 as builder
+#FROM amazoncorretto:17 as builder
 
-RUN yum -y install curl tar gzip
-ENV MAVEN_HOME /usr/local/apache-maven-3.9.5
-RUN mkdir -p $MAVEN_HOME \
-    && curl -L https://dlcdn.apache.org/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz -o /tmp/apache-maven.tar.gz \
-    && tar xzvf /tmp/apache-maven.tar.gz -C /usr/local/ \
-    && rm /tmp/apache-maven.tar.gz
+#RUN yum -y install curl tar gzip
+#ENV MAVEN_HOME /usr/local/apache-maven-3.9.5
+#RUN mkdir -p $MAVEN_HOME \
+#    && curl -L https://dlcdn.apache.org/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz -o /tmp/apache-maven.tar.gz \
+#    && tar xzvf /tmp/apache-maven.tar.gz -C /usr/local/ \
+#    && rm /tmp/apache-maven.tar.gz
 
-ENV PATH $MAVEN_HOME/bin:$PATH
-WORKDIR /code
-COPY . /code
-RUN mvn clean package
+#ENV PATH $MAVEN_HOME/bin:$PATH
+#WORKDIR /code
+#COPY . /code
+#RUN mvn clean package
 
 # Etapa de ejecución
-FROM amazoncorretto:17
+#FROM amazoncorretto:17
 
-WORKDIR /app
-COPY --from=builder /code/target/apiClientes-0.0.1-SNAPSHOT.jar /app
+#WORKDIR /app
+#COPY --from=builder /code/target/apiClientes-0.0.1-SNAPSHOT.jar /app
 
-EXPOSE 8080
-CMD ["java", "-jar", "/app/apiClientes-0.0.1-SNAPSHOT.jar"]
+#EXPOSE 8080
+#CMD ["java", "-jar", "/app/apiClientes-0.0.1-SNAPSHOT.jar"]

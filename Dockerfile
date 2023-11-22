@@ -21,6 +21,5 @@ WORKDIR /code
 COPY . /code
 
 EXPOSE 8080
-
-RUN mvn clean package
-#CMD ["java", "-jar", "target/apiClientes-0.0.1-SNAPSHOT.jar"]
+#RUN mvn clean package
+#ENTRYPOINT ["java", "-jar", "target/apiClientes-0.0.1-SNAPSHOT.jar"]
