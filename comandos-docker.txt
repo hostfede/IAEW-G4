@@ -9,4 +9,5 @@ docker start bbdd-iaew
 # Contenedor de la aplicacion
  docker build . -t tpi_iaew
 
- docker run -p 8080:8080 -d tpi_iaew --name iaew_cont
+ docker run -p 8080:8080 -d tpi_iaew
+
