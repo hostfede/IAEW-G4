@@ -40,7 +40,7 @@ public class ClientesController {
     @Value("${baseUrl.reservasAlojamiento}")
     private String alojamientosBaseUrl;
 
-    @Operation(summary = "Recuperar un cliente por su id")
+    @Operation(summary = "Consultar los datos de un cliente, por su id.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Se encontró el cliente",
                     content = { @Content(mediaType = "application/json",
@@ -53,7 +53,7 @@ public class ClientesController {
         return ResponseEntity.ok(getService.getCliente(id_cliente));
     }
 
-    @Operation(summary = "Recuperar lista de clientes")
+    @Operation(summary = "Recuperar un listado de todos los clientes con sus datos.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Listado de clientes",
                     content = { @Content(mediaType = "application/json",
@@ -66,7 +66,7 @@ public class ClientesController {
         return ResponseEntity.ok(getService.getClientes(page, size));
     }
 
-    @Operation(summary = "Modificar cliente")
+    @Operation(summary = "Crear un nuevo cliente.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Cliente actualizado",
                     content = { @Content(mediaType = "application/json",
@@ -82,7 +82,7 @@ public class ClientesController {
         return ResponseEntity.ok(postService.createCliente(clienteDto));
     }
 
-    @Operation(summary = "Modificar cliente")
+    @Operation(summary = "Eliminar un cliente existente, por su id.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Cliente actualizado",
                     content = { @Content(mediaType = "application/json",
@@ -98,7 +98,7 @@ public class ClientesController {
         return ResponseEntity.ok(deleteService.deleteCliente(id_cliente));
     }
 
-    @Operation(summary = "Modificar cliente")
+    @Operation(summary = "Modificar un cliente existente, por su id.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Cliente actualizado",
                     content = { @Content(mediaType = "application/json",
@@ -115,7 +115,7 @@ public class ClientesController {
     }
 
 
-    @Operation(summary = "Recuperar un cliente por su id")
+    @Operation(summary = "Consultar todas las reservas realizadas de un cliente, por su id.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Reservas de cliente encontradas",
                     content = { @Content(mediaType = "application/json",
